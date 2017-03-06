@@ -4,7 +4,7 @@ const memory = {};
 
 function saveForecast(zip, forecast) {
     memory[zip] = {
-        upated: new Date(),
+        updated: new Date(),
         forecast,
     };
 }
