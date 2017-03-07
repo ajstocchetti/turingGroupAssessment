@@ -39,7 +39,7 @@ class App extends React.Component {
         return (
             <div>
                 <Search search={this.getForecast.bind(this)}
-                disabled={this.loading} />
+                disabled={this.state.loading} />
                 <Forecast data={this.state.forecast} />
             </div>
         );
