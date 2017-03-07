@@ -3,10 +3,18 @@ require('dotenv').config();
 const db = require('./db');
 const express = require('express');
 const helmet = require('helmet');
+const path = require('path');
 const request = require('request');
 
 const app = express();
 app.use(helmet());
+
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/build/index.html'));
+});
+app.get('/app.js', function(req, res) {
+    res.sendFile(path.join(__dirname + '/build/app.js'));
+})
 
 app.get('/weather/:zip', function(req, res) {
     const zip = req.params.zip;
