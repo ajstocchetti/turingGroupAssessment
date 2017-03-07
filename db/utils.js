@@ -1,25 +1,34 @@
 'use strict';
+const db = require('./connect').getDb();
+const col = 'forecast'
 
-const memory = {};
 
 function saveForecast(zip, forecast) {
-    memory[zip] = {
-        updated: new Date(),
+    const query = { zip };
+    const doc = {
+        zip,
         forecast,
-    };
+        updated: new Date(),
+    }
+    return db.collection(col).findOneAndUpdate(query, doc, { upsert: true });
 }
 
 function getForecast(zip) {
-    if (memory.hasOwnProperty(zip)) {
-        const updated = memory[zip].updated;
-        if (new Date().getTime() - new Date(updated).getTime() <= 3600000) {
-            // now is less than 1 hour from last update for zip code
-            return memory[zip].forecast;
-        }
-    }
-
-    return null;
+    const lookback = new Date();
+    lookback.setHours(lookback.getHours() - 1);
+    const query = {
+        zip,
+        updated: {
+            $gte: lookback,
+        },
+    };
+    return db.collection(col).findOne(query)
+    .then(doc => {
+        if (doc) return doc.forecast;
+        return null;
+    });
 }
+
 
 module.exports = {
     getForecast,
