@@ -11,7 +11,7 @@ function getForecast(zip) {
 }
 
 function lookupFromWunderground(zip) {
-    const url = `http://api.wunderground.com/api/${process.env.WUND_API_KEY}/forecast/q/${zip}.json`
+    const url = `http://api.wunderground.com/api/${process.env.WUND_API_KEY}/forecast/q/${zip}.json`;
     return getAsPromise(url)
     .then(resp => {
         if (resp.response.hasOwnProperty('error')) throw new Error(resp.response.error.description);
