@@ -1,4 +1,5 @@
 const React = require('react');
+const Day = require('./ForecastDay');
 
 class Forecast extends React.Component {
 
@@ -8,15 +9,16 @@ class Forecast extends React.Component {
 
     render() {
         const data = this.props.data;
+        let days = null;
         if (data.hasOwnProperty('forecast')
         && data.forecast.hasOwnProperty('simpleforecast')
         && data.forecast.simpleforecast.hasOwnProperty('forecastday')) {
-            return (
-                <div>
-                    <pre>{JSON.stringify(this.props.data.forecast.simpleforecast.forecastday, null, 2)}</pre>
-                </div>
-            );
-        } else return null;
+            days = data.forecast.simpleforecast.forecastday.map((fcDay, index) => {
+                // TODO: limit to only 3 days
+                return (<Day data={fcDay} key={index} />);
+            });
+        }
+        return (<div>{days}</div>);
     };
 }
 
