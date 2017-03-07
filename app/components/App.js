@@ -1,5 +1,6 @@
 const React = require('react');
 const axios = require('axios');
+const Forecast = require('./ForecastDisplay');
 const Search = require('./Search');
 
 class App extends React.Component {
@@ -29,7 +30,7 @@ class App extends React.Component {
             this.setState({
                 loading: false,
                 forecast: {},
-                error: 'Error looking up forecase for zip code',
+                error: 'Error looking up forecast for zip code',
             });
         });
     }
@@ -39,6 +40,7 @@ class App extends React.Component {
             <div>
                 <Search search={this.getForecast.bind(this)}
                 disabled={this.loading} />
+                <Forecast data={this.state.forecast} />
             </div>
         );
     };
