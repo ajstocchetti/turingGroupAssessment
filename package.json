@@ -2,7 +2,7 @@
   "name": "turing-group-evaluation",
   "version": "1.0.0",
   "description": "Code Assessment",
-  "main": "server.js",
+  "main": "start.js",
   "scripts": {
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
