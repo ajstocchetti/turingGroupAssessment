@@ -1,15 +1,18 @@
-// import React from 'react';
-//
-// export default class App extends React.Component {
-//     render() {
-//         return (<span>Hello!</span>);
-//     };
-// }
 const React = require('react');
+const Search = require('./Search');
 
 class App extends React.Component {
+
+    getForecast = (zip) => {
+        // get forecast from api
+    }
+
     render() {
-        return (<span>Hello!</span>);
+        return (
+            <div>
+                <Search search={this.getForecast.bind(this)} />
+            </div>
+        );
     };
 }
 
