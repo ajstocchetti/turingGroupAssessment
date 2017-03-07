@@ -4,6 +4,7 @@ class Search extends React.Component {
 
     static propTypes = {
         search: React.PropTypes.func,
+        disabled: React.PropTypes.bool,
     }
 
     inputChanged = (event) => {
@@ -17,7 +18,7 @@ class Search extends React.Component {
         return (
             <div>
                 <label>Enter Zip Code:</label>
-                <input type="text" onChange={this.inputChanged} />
+                <input type="text" onChange={this.inputChanged} disabled={this.props.disabled} />
             </div>
         );
     };
