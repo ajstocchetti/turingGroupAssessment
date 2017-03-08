@@ -8,8 +8,10 @@ class Forecast extends React.Component {
     }
 
     render() {
-        const days = this.props.data.map((fcDay, index) => {
-            // TODO: limit to only 3 days
+        const days = this.props.data.filter((val, index) => {
+            // limit to first 3 days
+            return (index < 3);
+        }).map((fcDay, index) => {
             return (<Day data={fcDay} key={index} />);
         });
         return (<div>{days}</div>);

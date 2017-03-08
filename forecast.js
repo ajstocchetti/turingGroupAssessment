@@ -25,8 +25,13 @@ function getAsPromise(url) {
         request.get(url, (err, resp, body) => {
             if (err) reject(err);
             else {
-                const data = JSON.parse(body); // TODO: put in try/catch
-                resolve(data);
+                try {
+                    const data = JSON.parse(body);
+                    resolve(data);
+                } catch(err) {
+                    console.log('Error parsing JSON', err);
+                    reject(err);
+                }
             }
         });
     });
