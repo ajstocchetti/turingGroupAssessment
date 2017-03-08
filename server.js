@@ -38,4 +38,5 @@ function sendError(res, msg) {
     res.status(500).send(msg);
 }
 
-app.listen(3000);
+const port = process.env.PORT || 3000;
+app.listen(port);
