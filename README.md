@@ -1,6 +1,6 @@
 # Turing Group Code Assessment
 
-## Installing
+## Installation
 
 ### Prerequisites
 This repository requires Node.js and MongoDB to be installed
@@ -52,3 +52,9 @@ Open a terminal in the base directory of the app and type
 By default, the app will run on port 3000. You can modify this by setting the environment variable `PORT` or by adding `PORT` to the `.env` file.
 
 To access the app, point your browser to [http://localhost:3000](http://localhost:3000). If you modified the port when starting the app, you will need to use that port number.
+
+## Thoughts
+This app uses a React/Express/Mongo stack. I always try to use the right tool for the job, while keeping apps as light as possible. In this app, I am frustrated with how bloated things got. In the end I had 56 mb worth of node modules for a 1.7 mb app. It's not a bad thing, but it's not a good thing either.
+* React: React was definitely overkill. If this app was only ever going to display 3 days of weather, something lighter (like jQuery or Angular) would have worked. But I like React, so I went with it. The down side is that it required pulling in webpack and babel, and my use of React ended up adding 7 node modules to the package.
+* Express: I'm happy with Express, it works great for both large and small servers.
+* Mongo: I have mixed feelings about the use of MongoDB in this app. On one hand, as far as databases go, MongoDB works well because of its support for unstructured data. Trying to force the Weather Underground response into a SQL table would have been a huge pain. In an early iteration, I had an in-memory database that I liked, but I figured persisting to the disk was something that was important. The in-memory storage can found [here](https://github.com/ajstocchetti/turingGroupAssessment/blob/37ca7240da5f26223de61ad56512403209afe745/db.js)
