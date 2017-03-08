@@ -44,7 +44,8 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{ marginTop: '25px' }}>
+                <h2>Welcome to TG Weather</h2>
                 <Search search={this.getForecast.bind(this)}
                     disabled={this.state.loading} />
                 <Loader loading={this.state.loading} />
