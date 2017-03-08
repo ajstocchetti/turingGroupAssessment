@@ -32,7 +32,7 @@ class App extends React.Component {
                     loading: false,
                     forecast: response.data.forecast.simpleforecast.forecastday,
                 });
-            } else throw new Error('Forecase missing');
+            } else throw new Error('Forecast missing');
         }).catch(err => {
             this.setState({
                 loading: false,
@@ -45,7 +45,7 @@ class App extends React.Component {
     render() {
         return (
             <div style={{ marginTop: '25px' }}>
-                <h2>Welcome to TG Weather</h2>
+                <h2>{'Welcome to Andy\'s Super Fancy Weather App'}</h2>
                 <Search search={this.getForecast.bind(this)}
                     disabled={this.state.loading} />
                 <Loader loading={this.state.loading} />

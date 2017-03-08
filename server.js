@@ -29,6 +29,10 @@ app.get('/weather/:zip', function(req, res) {
     });
 });
 
+// If we get here, user has tried to access route that does not exist
+app.use(function (req, res) {
+    res.status(404).end();
+});
 
 function sendError(res, msg) {
     res.status(500).send(msg);
