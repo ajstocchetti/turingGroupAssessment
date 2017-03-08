@@ -1,5 +1,6 @@
 const React = require('react');
 const axios = require('axios');
+const ErrorBox = require('./ErrorBox');
 const Forecast = require('./ForecastDisplay');
 const Loader = require('./Loader');
 const Search = require('./Search');
@@ -10,7 +11,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             loading: false,
-            forecast: {},
+            forecast: [],
             error: '',
         };
     }
@@ -23,15 +24,20 @@ class App extends React.Component {
         });
         axios.get(`/weather/${zip}`)
         .then(response => {
-            this.setState({
-                loading: false,
-                forecast: response.data,
-            });
+            if (response.hasOwnProperty('data')
+            && response.data.hasOwnProperty('forecast')
+            && response.data.forecast.hasOwnProperty('simpleforecast')
+            && response.data.forecast.simpleforecast.hasOwnProperty('forecastday')) {
+                this.setState({
+                    loading: false,
+                    forecast: response.data.forecast.simpleforecast.forecastday,
+                });
+            } else throw new Error('Forecase missing');
         }).catch(err => {
             this.setState({
                 loading: false,
-                forecast: {},
-                error: 'Error looking up forecast for zip code',
+                forecast: [],
+                error: `Unable to retreive forecast for zip code ${zip}`,
             });
         });
     }
@@ -42,6 +48,7 @@ class App extends React.Component {
                 <Search search={this.getForecast.bind(this)}
                     disabled={this.state.loading} />
                 <Loader loading={this.state.loading} />
+                <ErrorBox text={this.state.error} />
                 <Forecast data={this.state.forecast} />
             </div>
         );
