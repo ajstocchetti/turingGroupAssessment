@@ -51,4 +51,4 @@ Open a terminal in the base directory of the app and type
 ```
 By default, the app will run on port 3000. You can modify this by setting the environment variable `PORT` or by adding `PORT` to the `.env` file.
 
-To access the app, point your browser to [http://localhost.com:3000](http://localhost.com:3000). If you modified the port when starting the app, you will need to use that port number.
+To access the app, point your browser to [http://localhost:3000](http://localhost:3000). If you modified the port when starting the app, you will need to use that port number.
