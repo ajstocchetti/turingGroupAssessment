@@ -45,6 +45,10 @@ To install the weather app, open a terminal in the base directory of the app and
 This app uses dotenv to load environment variables. To set it up, create a `.env` file similar to the `example.env` file provided. This file contains your weather underground key to access the weather underground API. Alternatively, you can pass in the weather underground key as the environment variable `WUND_API_KEY` when starting the app
 
 ## Running the app
+Make sure that MongoDB is running. If it is not, start the mongo server by running
+```bash
+    mongod
+```
 Open a terminal in the base directory of the app and type
 ```bash
     node start
