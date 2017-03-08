@@ -1,6 +1,7 @@
 const React = require('react');
 const axios = require('axios');
 const Forecast = require('./ForecastDisplay');
+const Loader = require('./Loader');
 const Search = require('./Search');
 
 class App extends React.Component {
@@ -39,7 +40,8 @@ class App extends React.Component {
         return (
             <div>
                 <Search search={this.getForecast.bind(this)}
-                disabled={this.state.loading} />
+                    disabled={this.state.loading} />
+                <Loader loading={this.state.loading} />
                 <Forecast data={this.state.forecast} />
             </div>
         );
