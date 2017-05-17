@@ -3,7 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
 let _db;
 
 function startDb() {
-    const uri = 'mongodb://localhost:27017/tgweather';
+    const uri = `mongodb://mongodb/tgweather`;
     return MongoClient.connect(uri)
     .then(db => {
         console.log('Connected to mongodb');

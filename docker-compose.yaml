@@ -1,0 +1,12 @@
+version: '2'
+services:
+  server:
+    build: .
+    ports:
+     - "3000:3000"
+    environment:
+      WUND_API_KEY: 123456
+    links: 
+      - mongodb
+  mongodb:
+    image: mongo
